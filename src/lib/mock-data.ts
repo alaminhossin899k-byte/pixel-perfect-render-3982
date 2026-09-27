@@ -60,7 +60,7 @@ export type Materials = {
   none: boolean;
 };
 
-export type Note = { id: string; author: string; at: string; text: string; draft?: boolean };
+export type Note = { id: string; author: string; at: string; text: string; draft?: boolean | undefined };
 
 export type Ticket = {
   id: string;
@@ -86,7 +86,7 @@ export type Lead = {
   package: string;
   receivedAt: string;
   assignedPop: string | null;
-  forwardedTo?: string;
+  forwardedTo?: string | undefined;
 };
 
 export type Permissions = {
