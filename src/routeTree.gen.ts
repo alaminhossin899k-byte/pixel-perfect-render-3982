@@ -11,9 +11,9 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DashboardRouteImport } from './routes/dashboard'
-import { Route as LeadsRouteImport } from './routes/leads'
+import { Route as SalesLeadsRouteImport } from './routes/sales-leads'
 import { Route as TriageRouteImport } from './routes/triage'
-import { Route as VerificationRouteImport } from './routes/verification'
+import { Route as VerificationQueueRouteImport } from './routes/verification-queue'
 import { Route as TicketsIndexRouteImport } from './routes/tickets.index'
 import { Route as TicketsIdRouteImport } from './routes/tickets.$id'
 
@@ -27,9 +27,9 @@ const DashboardRoute = DashboardRouteImport.update({
   path: '/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
-const LeadsRoute = LeadsRouteImport.update({
-  id: '/leads',
-  path: '/leads',
+const SalesLeadsRoute = SalesLeadsRouteImport.update({
+  id: '/sales-leads',
+  path: '/sales-leads',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TriageRoute = TriageRouteImport.update({
@@ -37,9 +37,9 @@ const TriageRoute = TriageRouteImport.update({
   path: '/triage',
   getParentRoute: () => rootRouteImport,
 } as any)
-const VerificationRoute = VerificationRouteImport.update({
-  id: '/verification',
-  path: '/verification',
+const VerificationQueueRoute = VerificationQueueRouteImport.update({
+  id: '/verification-queue',
+  path: '/verification-queue',
   getParentRoute: () => rootRouteImport,
 } as any)
 const TicketsIndexRoute = TicketsIndexRouteImport.update({
@@ -56,18 +56,18 @@ const TicketsIdRoute = TicketsIdRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRoute
-  '/leads': typeof LeadsRoute
+  '/sales-leads': typeof SalesLeadsRoute
   '/triage': typeof TriageRoute
-  '/verification': typeof VerificationRoute
+  '/verification-queue': typeof VerificationQueueRoute
   '/tickets/$id': typeof TicketsIdRoute
   '/tickets/': typeof TicketsIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRoute
-  '/leads': typeof LeadsRoute
+  '/sales-leads': typeof SalesLeadsRoute
   '/triage': typeof TriageRoute
-  '/verification': typeof VerificationRoute
+  '/verification-queue': typeof VerificationQueueRoute
   '/tickets/$id': typeof TicketsIdRoute
   '/tickets': typeof TicketsIndexRoute
 }
@@ -75,9 +75,9 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRoute
-  '/leads': typeof LeadsRoute
+  '/sales-leads': typeof SalesLeadsRoute
   '/triage': typeof TriageRoute
-  '/verification': typeof VerificationRoute
+  '/verification-queue': typeof VerificationQueueRoute
   '/tickets/$id': typeof TicketsIdRoute
   '/tickets/': typeof TicketsIndexRoute
 }
@@ -86,27 +86,27 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/dashboard'
-    | '/leads'
+    | '/sales-leads'
     | '/triage'
-    | '/verification'
+    | '/verification-queue'
     | '/tickets/$id'
     | '/tickets/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/dashboard'
-    | '/leads'
+    | '/sales-leads'
     | '/triage'
-    | '/verification'
+    | '/verification-queue'
     | '/tickets/$id'
     | '/tickets'
   id:
     | '__root__'
     | '/'
     | '/dashboard'
-    | '/leads'
+    | '/sales-leads'
     | '/triage'
-    | '/verification'
+    | '/verification-queue'
     | '/tickets/$id'
     | '/tickets/'
   fileRoutesById: FileRoutesById
@@ -114,9 +114,9 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DashboardRoute: typeof DashboardRoute
-  LeadsRoute: typeof LeadsRoute
+  SalesLeadsRoute: typeof SalesLeadsRoute
   TriageRoute: typeof TriageRoute
-  VerificationRoute: typeof VerificationRoute
+  VerificationQueueRoute: typeof VerificationQueueRoute
   TicketsIdRoute: typeof TicketsIdRoute
   TicketsIndexRoute: typeof TicketsIndexRoute
 }
@@ -137,11 +137,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/leads': {
-      id: '/leads'
-      path: '/leads'
-      fullPath: '/leads'
-      preLoaderRoute: typeof LeadsRouteImport
+    '/sales-leads': {
+      id: '/sales-leads'
+      path: '/sales-leads'
+      fullPath: '/sales-leads'
+      preLoaderRoute: typeof SalesLeadsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/triage': {
@@ -151,11 +151,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TriageRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/verification': {
-      id: '/verification'
-      path: '/verification'
-      fullPath: '/verification'
-      preLoaderRoute: typeof VerificationRouteImport
+    '/verification-queue': {
+      id: '/verification-queue'
+      path: '/verification-queue'
+      fullPath: '/verification-queue'
+      preLoaderRoute: typeof VerificationQueueRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/tickets/': {
@@ -178,9 +178,9 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DashboardRoute: DashboardRoute,
-  LeadsRoute: LeadsRoute,
+  SalesLeadsRoute: SalesLeadsRoute,
   TriageRoute: TriageRoute,
-  VerificationRoute: VerificationRoute,
+  VerificationQueueRoute: VerificationQueueRoute,
   TicketsIdRoute: TicketsIdRoute,
   TicketsIndexRoute: TicketsIndexRoute,
 }
