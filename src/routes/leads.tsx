@@ -28,7 +28,7 @@ function LeadsPage() {
   const leads = useAppStore((s) => s.leads);
   const assignLead = useAppStore((s) => s.assignLead);
   const [activeId, setActiveId] = useState<string | null>(null);
-  const [pop, setPop] = useState(POPS[0]);
+  const [pop, setPop] = useState<string>(POPS[0]!);
 
   return (
     <div>

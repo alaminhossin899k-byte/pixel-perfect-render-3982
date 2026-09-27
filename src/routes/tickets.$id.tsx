@@ -50,7 +50,7 @@ function TicketDetail() {
   const addNote = useAppStore((s) => s.addNote);
 
   const [note, setNote] = useState("");
-  const [target, setTarget] = useState(POPS[0]);
+  const [target, setTarget] = useState<string>(POPS[0]!);
   const [closeOpen, setCloseOpen] = useState(false);
   const [feedback, setFeedback] = useState("");
   const [rating, setRating] = useState("5");
