@@ -21,7 +21,7 @@ import {
   StatusBadge,
 } from "@/components/ui-kit";
 import { POPS } from "@/lib/mock-data";
-import { roleLabel, useAppStore } from "@/store/app-store";
+import { can, roleLabel, useAppStore } from "@/store/app-store";
 
 export const Route = createFileRoute("/tickets/$id")({
   head: () => ({
@@ -172,7 +172,7 @@ function TicketDetail() {
           <p className="mt-1 text-xs text-muted-foreground">Available to: {actor}</p>
 
           <div className="mt-4 space-y-2">
-            {role === "technician" && (
+            {(role === "field_tech" || role === "pop_engineer") && (
               <Button
                 variant="success"
                 className="w-full"
@@ -185,7 +185,7 @@ function TicketDetail() {
               </Button>
             )}
 
-            {role === "support" && (
+            {(role === "senior_support" || role === "admin") && (
               <>
                 <Button
                   className="w-full"
@@ -204,7 +204,7 @@ function TicketDetail() {
               </>
             )}
 
-            {role === "escalation" && (
+            {can(role, "escalate") && (
               <>
                 <Select value={target} onChange={(e) => setTarget(e.target.value)}>
                   {POPS.map((p) => (
