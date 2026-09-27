@@ -149,3 +149,58 @@ export function Modal({
     </div>
   );
 }
+
+export function Toggle({
+  checked,
+  onChange,
+  disabled,
+  label,
+}: {
+  checked: boolean;
+  onChange: () => void;
+  disabled?: boolean;
+  label?: string;
+}) {
+  return (
+    <button
+      type="button"
+      role="switch"
+      aria-checked={checked}
+      aria-label={label}
+      disabled={disabled}
+      onClick={onChange}
+      className={cn(
+        "relative inline-flex h-5 w-9 shrink-0 items-center rounded-full border transition-colors disabled:opacity-50",
+        checked ? "border-primary/60 bg-primary/70" : "border-border bg-input",
+      )}
+    >
+      <span
+        className={cn(
+          "inline-block h-3.5 w-3.5 rounded-full bg-foreground transition-transform",
+          checked ? "translate-x-4" : "translate-x-0.5",
+        )}
+      />
+    </button>
+  );
+}
+
+export function AccessDenied({ need }: { need: string }) {
+  return (
+    <div className="surface mx-auto mt-12 max-w-md p-8 text-center">
+      <p className="text-xs font-semibold uppercase tracking-wide text-destructive">Access restricted</p>
+      <h2 className="mt-2 text-lg font-semibold text-foreground">Your current role can't open this panel</h2>
+      <p className="mt-2 text-sm text-muted-foreground">
+        Requires: {need}. Switch role from the simulator bar at the bottom of the screen.
+      </p>
+    </div>
+  );
+}
+
+export function Stat({ label, value, tone }: { label: string; value: ReactNode; tone?: string }) {
+  return (
+    <div className="surface p-4">
+      <p className="text-xs text-muted-foreground">{label}</p>
+      <p className={cn("mt-1 font-display text-2xl font-semibold text-foreground", tone)}>{value}</p>
+    </div>
+  );
+}
