@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as LeadsRouteImport } from './routes/leads'
+import { Route as TriageRouteImport } from './routes/triage'
 import { Route as VerificationRouteImport } from './routes/verification'
 import { Route as TicketsIndexRouteImport } from './routes/tickets.index'
 import { Route as TicketsIdRouteImport } from './routes/tickets.$id'
@@ -29,6 +30,11 @@ const DashboardRoute = DashboardRouteImport.update({
 const LeadsRoute = LeadsRouteImport.update({
   id: '/leads',
   path: '/leads',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TriageRoute = TriageRouteImport.update({
+  id: '/triage',
+  path: '/triage',
   getParentRoute: () => rootRouteImport,
 } as any)
 const VerificationRoute = VerificationRouteImport.update({
@@ -51,6 +57,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRoute
   '/leads': typeof LeadsRoute
+  '/triage': typeof TriageRoute
   '/verification': typeof VerificationRoute
   '/tickets/$id': typeof TicketsIdRoute
   '/tickets/': typeof TicketsIndexRoute
@@ -59,6 +66,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRoute
   '/leads': typeof LeadsRoute
+  '/triage': typeof TriageRoute
   '/verification': typeof VerificationRoute
   '/tickets/$id': typeof TicketsIdRoute
   '/tickets': typeof TicketsIndexRoute
@@ -68,6 +76,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRoute
   '/leads': typeof LeadsRoute
+  '/triage': typeof TriageRoute
   '/verification': typeof VerificationRoute
   '/tickets/$id': typeof TicketsIdRoute
   '/tickets/': typeof TicketsIndexRoute
@@ -78,6 +87,7 @@ export interface FileRouteTypes {
     | '/'
     | '/dashboard'
     | '/leads'
+    | '/triage'
     | '/verification'
     | '/tickets/$id'
     | '/tickets/'
@@ -86,6 +96,7 @@ export interface FileRouteTypes {
     | '/'
     | '/dashboard'
     | '/leads'
+    | '/triage'
     | '/verification'
     | '/tickets/$id'
     | '/tickets'
@@ -94,6 +105,7 @@ export interface FileRouteTypes {
     | '/'
     | '/dashboard'
     | '/leads'
+    | '/triage'
     | '/verification'
     | '/tickets/$id'
     | '/tickets/'
@@ -103,6 +115,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DashboardRoute: typeof DashboardRoute
   LeadsRoute: typeof LeadsRoute
+  TriageRoute: typeof TriageRoute
   VerificationRoute: typeof VerificationRoute
   TicketsIdRoute: typeof TicketsIdRoute
   TicketsIndexRoute: typeof TicketsIndexRoute
@@ -129,6 +142,13 @@ declare module '@tanstack/react-router' {
       path: '/leads'
       fullPath: '/leads'
       preLoaderRoute: typeof LeadsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/triage': {
+      id: '/triage'
+      path: '/triage'
+      fullPath: '/triage'
+      preLoaderRoute: typeof TriageRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/verification': {
@@ -159,6 +179,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DashboardRoute: DashboardRoute,
   LeadsRoute: LeadsRoute,
+  TriageRoute: TriageRoute,
   VerificationRoute: VerificationRoute,
   TicketsIdRoute: TicketsIdRoute,
   TicketsIndexRoute: TicketsIndexRoute,

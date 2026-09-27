@@ -1,5 +1,6 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import {
+  Sparkles,
   Bell,
   ChevronDown,
   LayoutDashboard,
@@ -19,6 +20,7 @@ const NAV = [
   { to: "/tickets", label: "Tickets", icon: Ticket },
   { to: "/leads", label: "Sales & Leads", icon: UserPlus },
   { to: "/verification", label: "Verification Queue", icon: LifeBuoy },
+  { to: "/triage", label: "AI Triage", icon: Sparkles },
 ] as const;
 
 export function AppShell({ children }: { children: ReactNode }) {
