@@ -8,3 +8,6 @@
 > Commits you push to the connected branch sync back to Lovable and show up in
 > the editor, so keep the branch in a working state.
 <!-- LOVABLE:END -->
+
+## Alpha Network dashboard
+- Mock app state (tickets, leads, simulated role) lives in `src/store/app-store.ts` (Zustand); no backend yet, so UI actions mutate that store only.
