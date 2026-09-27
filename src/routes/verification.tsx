@@ -23,7 +23,11 @@ export const Route = createFileRoute("/verification")({
 });
 
 function VerificationPage() {
-  const tickets = useAppStore((s) => s.tickets.filter((t) => t.status === "resolved"));
+  const allTickets = useAppStore((s) => s.tickets);
+  const tickets = useMemo(
+    () => allTickets.filter((t) => t.status === "resolved"),
+    [allTickets],
+  );
   const setStatus = useAppStore((s) => s.setStatus);
   const role = useAppStore((s) => s.role);
   const [activeId, setActiveId] = useState<string | null>(null);
