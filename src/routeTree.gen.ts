@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as LeadsRouteImport } from './routes/leads'
+import { Route as VerificationRouteImport } from './routes/verification'
 import { Route as TicketsIndexRouteImport } from './routes/tickets.index'
 import { Route as TicketsIdRouteImport } from './routes/tickets.$id'
 
@@ -30,6 +31,11 @@ const LeadsRoute = LeadsRouteImport.update({
   path: '/leads',
   getParentRoute: () => rootRouteImport,
 } as any)
+const VerificationRoute = VerificationRouteImport.update({
+  id: '/verification',
+  path: '/verification',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TicketsIndexRoute = TicketsIndexRouteImport.update({
   id: '/tickets/',
   path: '/tickets/',
@@ -45,6 +51,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRoute
   '/leads': typeof LeadsRoute
+  '/verification': typeof VerificationRoute
   '/tickets/$id': typeof TicketsIdRoute
   '/tickets/': typeof TicketsIndexRoute
 }
@@ -52,6 +59,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRoute
   '/leads': typeof LeadsRoute
+  '/verification': typeof VerificationRoute
   '/tickets/$id': typeof TicketsIdRoute
   '/tickets': typeof TicketsIndexRoute
 }
@@ -60,21 +68,42 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/dashboard': typeof DashboardRoute
   '/leads': typeof LeadsRoute
+  '/verification': typeof VerificationRoute
   '/tickets/$id': typeof TicketsIdRoute
   '/tickets/': typeof TicketsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/dashboard' | '/leads' | '/tickets/$id' | '/tickets/'
+  fullPaths:
+    | '/'
+    | '/dashboard'
+    | '/leads'
+    | '/verification'
+    | '/tickets/$id'
+    | '/tickets/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/dashboard' | '/leads' | '/tickets/$id' | '/tickets'
-  id: '__root__' | '/' | '/dashboard' | '/leads' | '/tickets/$id' | '/tickets/'
+  to:
+    | '/'
+    | '/dashboard'
+    | '/leads'
+    | '/verification'
+    | '/tickets/$id'
+    | '/tickets'
+  id:
+    | '__root__'
+    | '/'
+    | '/dashboard'
+    | '/leads'
+    | '/verification'
+    | '/tickets/$id'
+    | '/tickets/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DashboardRoute: typeof DashboardRoute
   LeadsRoute: typeof LeadsRoute
+  VerificationRoute: typeof VerificationRoute
   TicketsIdRoute: typeof TicketsIdRoute
   TicketsIndexRoute: typeof TicketsIndexRoute
 }
@@ -102,6 +131,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LeadsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/verification': {
+      id: '/verification'
+      path: '/verification'
+      fullPath: '/verification'
+      preLoaderRoute: typeof VerificationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/tickets/': {
       id: '/tickets/'
       path: '/tickets'
@@ -123,6 +159,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DashboardRoute: DashboardRoute,
   LeadsRoute: LeadsRoute,
+  VerificationRoute: VerificationRoute,
   TicketsIdRoute: TicketsIdRoute,
   TicketsIndexRoute: TicketsIndexRoute,
 }
